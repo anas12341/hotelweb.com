@@ -1,242 +1,161 @@
-<?php include 'partials/header.php'; ?>
+<?php include('db_connect.php');?>
 
-    <!-- Breadcrumb Section Begin -->
-    <div class="breadcrumb-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-text">
-                        <h2>Our Rooms</h2>
-                        <div class="bt-option">
-                            <a href="./home.php">Home</a>
-                            <span>Rooms</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Breadcrumb Section End -->
+<div class="container-fluid">
+	
+	<div class="col-lg-12">
+		<div class="row">
+			<!-- FORM Panel -->
+			<div class="col-md-4">
+			<form action="" id="manage-room">
+				<div class="card">
+					<div class="card-header">
+						    Room Form
+				  	</div>
+					<div class="card-body">
+							<input type="hidden" name="id">
+							<div class="form-group">
+								<label class="control-label">Room</label>
+								<input type="text" class="form-control" name="room">
+							</div>
+							<div class="form-group">
+								<label class="control-label">Category</label>
+								<select class="custom-select browser-default" name="category_id">
+									<?php 
+									$cat = $conn->query("SELECT * FROM room_categories order by name asc ");
+									while($row= $cat->fetch_assoc()) {
+										$cat_name[$row['id']] = $row['name'];
+										?>
+										<option value="<?php echo $row['id'] ?>"><?php echo $row['name'] ?></option>
+									<?php
+									}
+									?>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="" class="control-label">Availability</label>
+								<select class="custom-select browser-default" name="status">
+									<option value="0">Available</option>
+									<option value="1">Unavailable</option>
 
-    <!-- Rooms Section Begin -->
-    <section class="rooms-section spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="room-item">
-                        <img src="img/room/room-1.jpg" alt="">
-                        <div class="ri-text">
-                            <h4>Premium King Room</h4>
-                            <h3>159$<span>/Pernight</span></h3>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="r-o">Size:</td>
-                                        <td>30 ft</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Capacity:</td>
-                                        <td>Max persion 3</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Bed:</td>
-                                        <td>King Beds</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Services:</td>
-                                        <td>Wifi, Television, Bathroom,...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a href="#" class="primary-btn">More Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="room-item">
-                        <img src="img/room/room-2.jpg" alt="">
-                        <div class="ri-text">
-                            <h4>Deluxe Room</h4>
-                            <h3>159$<span>/Pernight</span></h3>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="r-o">Size:</td>
-                                        <td>30 ft</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Capacity:</td>
-                                        <td>Max persion 5</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Bed:</td>
-                                        <td>King Beds</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Services:</td>
-                                        <td>Wifi, Television, Bathroom,...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a href="#" class="primary-btn">More Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="room-item">
-                        <img src="img/room/room-3.jpg" alt="">
-                        <div class="ri-text">
-                            <h4>Double Room</h4>
-                            <h3>159$<span>/Pernight</span></h3>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="r-o">Size:</td>
-                                        <td>30 ft</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Capacity:</td>
-                                        <td>Max persion 2</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Bed:</td>
-                                        <td>King Beds</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Services:</td>
-                                        <td>Wifi, Television, Bathroom,...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a href="#" class="primary-btn">More Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="room-item">
-                        <img src="img/room/room-4.jpg" alt="">
-                        <div class="ri-text">
-                            <h4>Luxury Room</h4>
-                            <h3>159$<span>/Pernight</span></h3>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="r-o">Size:</td>
-                                        <td>30 ft</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Capacity:</td>
-                                        <td>Max persion 1</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Bed:</td>
-                                        <td>King Beds</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Services:</td>
-                                        <td>Wifi, Television, Bathroom,...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a href="#" class="primary-btn">More Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="room-item">
-                        <img src="img/room/room-5.jpg" alt="">
-                        <div class="ri-text">
-                            <h4>Room With View</h4>
-                            <h3>159$<span>/Pernight</span></h3>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="r-o">Size:</td>
-                                        <td>30 ft</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Capacity:</td>
-                                        <td>Max persion 1</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Bed:</td>
-                                        <td>King Beds</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Services:</td>
-                                        <td>Wifi, Television, Bathroom,...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a href="#" class="primary-btn">More Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="room-item">
-                        <img src="img/room/room-6.jpg" alt="">
-                        <div class="ri-text">
-                            <h4>Small View</h4>
-                            <h3>159$<span>/Pernight</span></h3>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="r-o">Size:</td>
-                                        <td>30 ft</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Capacity:</td>
-                                        <td>Max persion 2</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Bed:</td>
-                                        <td>King Beds</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Services:</td>
-                                        <td>Wifi, Television, Bathroom,...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a href="#" class="primary-btn">More Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="room-pagination">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Rooms Section End -->
+								</select>
+							</div>
+					</div>
+							
+					<div class="card-footer">
+						<div class="row">
+							<div class="col-md-12">
+								<button class="btn btn-sm btn-primary col-sm-3 offset-md-3"> Save</button>
+								<button class="btn btn-sm btn-default col-sm-3" type="button" onclick="$('#manage-room').get(0).reset()"> Cancel</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+			</div>
+			<!-- FORM Panel -->
 
-<?php include 'partials/footer.php'; ?>
-    
+			<!-- Table Panel -->
+			<div class="col-md-8">
+				<div class="card">
+					<div class="card-body">
+						<table class="table table-bordered table-hover">
+							<thead>
+								<tr>
+									<th class="text-center">#</th>
+									<th class="text-center">Category</th>
+									<th class="text-center">Room</th>
+									<th class="text-center">Status</th>
+									<th class="text-center">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php 
+								$i = 1;
+								$rooms = $conn->query("SELECT * FROM rooms order by id asc");
+								while($row=$rooms->fetch_assoc()):
+								?>
+								<tr>
+									<td class="text-center"><?php echo $i++ ?></td>
 
-    <!-- Search model Begin -->
-    <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch"><i class="icon_close"></i></div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
-            </form>
-        </div>
-    </div>
-    <!-- Search model end -->
+								
+									<td class="text-center"><?php echo $cat_name[$row['category_id']] ?></td>
+									<td class=""><?php echo $row['room'] ?></td>
+									<?php if($row['status'] == 0): ?>
+										<td class="text-center"><span class="badge badge-success">Available</span></td>
+									<?php else: ?>
+										<td class="text-center"><span class="badge badge-default">Unavailable</span></td>
+									<?php endif; ?>
+									<td class="text-center">
+										<button class="btn btn-sm btn-primary edit_cat" type="button" data-id="<?php echo $row['id'] ?>" data-room="<?php echo $row['room'] ?>" data-category_id="<?php echo $row['category_id'] ?>" data-status="<?php echo $row['status'] ?>">Edit</button>
+										<button class="btn btn-sm btn-danger delete_cat" type="button" data-id="<?php echo $row['id'] ?>">Delete</button>
+									</td>
+								</tr>
+								<?php endwhile; ?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<!-- Table Panel -->
+		</div>
+	</div>	
 
-    <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
-</body>
+</div>
 
-</html>
+<script>
+	$('#manage-room').submit(function(e){
+		e.preventDefault()
+		start_load()
+		$.ajax({
+			url:'ajax.php?action=save_room',
+			method:"POST",
+			data: $(this).serialize(),
+			success:function(resp){
+				if(resp==1){
+					alert_toast("Data successfully added",'success')
+					setTimeout(function(){
+						location.reload()
+					},1500)
+
+				}
+				else if(resp==2){
+					alert_toast("Data successfully updated",'success')
+					setTimeout(function(){
+						location.reload()
+					},1500)
+
+				}
+			}
+		})
+	})
+	$('.edit_cat').click(function(){
+		start_load()
+		var cat = $('#manage-room')
+		cat.get(0).reset()
+		cat.find("[name='id']").val($(this).attr('data-id'))
+		cat.find("[name='room']").val($(this).attr('data-room'))
+		cat.find("[name='category_id']").val($(this).attr('data-category_id'))
+		cat.find("[name='status']").val($(this).attr('data-status'))
+		end_load()
+	})
+	$('.delete_cat').click(function(){
+		_conf("Are you sure to delete this room?","delete_cat",[$(this).attr('data-id')])
+	})
+	function delete_cat($id){
+		start_load()
+		$.ajax({
+			url:'ajax.php?action=delete_room',
+			method:'POST',
+			data:{id:$id},
+			success:function(resp){
+				if(resp==1){
+					alert_toast("Data successfully deleted",'success')
+					setTimeout(function(){
+						location.reload()
+					},1500)
+
+				}
+			}
+		})
+	}
+</script>
